@@ -1,4 +1,4 @@
-package com.example.lukaszjarka.cardatabase;
+package com.example.maciekBro.cardatabase;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -7,11 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.FilterQueryProvider;
 
-import com.example.lukaszjarka.cardatabase.add.AddNewCarActivity;
-import com.example.lukaszjarka.cardatabase.listing.ListingActivity;
+import com.example.maciekBro.cardatabase.add.AddNewCarActivity;
+import com.example.maciekBro.cardatabase.listing.ListingActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

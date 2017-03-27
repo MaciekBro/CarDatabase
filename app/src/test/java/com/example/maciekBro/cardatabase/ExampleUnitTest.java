@@ -1,4 +1,4 @@
-package com.example.lukaszjarka.cardatabase;
+package com.example.maciekBro.cardatabase;
 
 import org.junit.Test;
 

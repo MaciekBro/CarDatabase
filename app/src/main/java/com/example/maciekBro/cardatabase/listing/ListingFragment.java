@@ -1,4 +1,4 @@
-package com.example.lukaszjarka.cardatabase.listing;
+package com.example.maciekBro.cardatabase.listing;
 
 import android.support.v4.app.Fragment;
 

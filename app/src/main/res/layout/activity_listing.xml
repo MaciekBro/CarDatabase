@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.lukaszjarka.cardatabase.listing.ListingActivity">
+    tools:context="com.example.maciekBro.cardatabase.listing.ListingActivity">
 
 </android.support.constraint.ConstraintLayout>

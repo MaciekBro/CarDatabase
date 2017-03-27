@@ -1,4 +1,4 @@
-package com.example.lukaszjarka.cardatabase;
+package com.example.maciekBro.cardatabase;
 
 import android.content.Context;
 import android.database.Cursor;

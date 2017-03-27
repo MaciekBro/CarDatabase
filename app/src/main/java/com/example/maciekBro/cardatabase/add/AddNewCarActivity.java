@@ -1,21 +1,19 @@
-package com.example.lukaszjarka.cardatabase.add;
+package com.example.maciekBro.cardatabase.add;
 
-import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.lukaszjarka.cardatabase.Car;
-import com.example.lukaszjarka.cardatabase.CarBuilder;
-import com.example.lukaszjarka.cardatabase.MotoDatabaseOpenHelper;
-import com.example.lukaszjarka.cardatabase.R;
+import com.example.maciekBro.cardatabase.Car;
+import com.example.maciekBro.cardatabase.CarBuilder;
+import com.example.maciekBro.cardatabase.MotoDatabaseOpenHelper;
+import com.example.maciekBro.cardatabase.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
