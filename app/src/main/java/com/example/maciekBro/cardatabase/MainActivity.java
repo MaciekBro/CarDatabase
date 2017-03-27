@@ -19,7 +19,7 @@ import butterknife.OnClick;
 public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.autocomplete_textview)
-    AutoCompleteTextView autoCompleteTextView;
+    AutoCompleteTextView autoCompleteTextView;  //do podpowiadania wyszukiwanych fraz!!!!
 
     private MotoDatabaseOpenHelper databaseOpenHelper;
 
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
         AutocompleteAdapter adapter = new AutocompleteAdapter(this,
                 databaseOpenHelper.getAllItems());
-        adapter.setFilterQueryProvider(new FilterQueryProvider() {
+        adapter.setFilterQueryProvider(new FilterQueryProvider() {      //tutaj  jest podpowiadanie fraz
             @Override
             public Cursor runQuery(CharSequence constraint) {
                 return databaseOpenHelper.searchQuery(constraint);
