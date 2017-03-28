@@ -57,6 +57,26 @@ public class MotoDatabaseOpenHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public Car getCarWithId(String id) {     //metoda do pobierania obiektu samochodu z jego ID
+        Cursor cursor = getReadableDatabase().query(CarsTableContract.TABLE_NAME, null,         //null jest odpowiednikiem * w bazach danych, czyli zwraca wszystko
+                CarsTableContract._ID + " = ? ", new String[]{id}, null, null, null);
+
+        if (cursor.getCount() > 0) {       //jesli cos znajdziemy, chyba jest zbedny
+            cursor.moveToFirst();
+            Car car = new CarBuilder()
+                    .setMake(cursor.getString(cursor.getColumnIndex(CarsTableContract.COLUMN_MAKE)))
+                    .setImage(cursor.getString(cursor.getColumnIndex(CarsTableContract.COLUMN_IMAGE)))
+                    .setYear(cursor.getInt(cursor.getColumnIndex(CarsTableContract.COLUMN_YEAR)))
+                    .setModel(cursor.getString(cursor.getColumnIndex(CarsTableContract.COLUMN_MODEL)))
+                    .createCar();
+            cursor.close();
+            return car;
+        }
+        cursor.close();
+        return null;
+    }
+
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         if (newVersion > oldVersion) {

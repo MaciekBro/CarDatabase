@@ -67,6 +67,7 @@ public class ListingFragment extends Fragment {
         RecyclerViewCursorAdapter adapter = new RecyclerViewCursorAdapter();
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(),LinearLayoutManager.VERTICAL,false));
         recyclerView.setAdapter(adapter);
+       adapter.setOnCarItemClickListener((OnCarItemClickListener) getActivity()); //aktywnosc bedzie implementowala interface, zebybylo mniej operacji tak ustawiamy
         adapter.setCursor(openHelper.searchQuery(query));
 
     }

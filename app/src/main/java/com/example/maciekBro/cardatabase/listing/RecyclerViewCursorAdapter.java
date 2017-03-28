@@ -23,8 +23,13 @@ import static butterknife.ButterKnife.*;
 
 public class RecyclerViewCursorAdapter extends RecyclerView.Adapter<RecyclerViewCursorAdapter.ViewHolder> {
 
+    private OnCarItemClickListener onCarItemClickListener;
     private Cursor cursor;
     private CarsTableContract carsTableContract;
+
+    public void setOnCarItemClickListener(OnCarItemClickListener onCarItemClickListener) {
+        this.onCarItemClickListener = onCarItemClickListener;
+    }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -39,9 +44,18 @@ public class RecyclerViewCursorAdapter extends RecyclerView.Adapter<RecyclerView
         String make = cursor.getString(cursor.getColumnIndex(CarsTableContract.COLUMN_MAKE));
         String model = cursor.getString(cursor.getColumnIndex(CarsTableContract.COLUMN_MODEL));
         int year = cursor.getInt(cursor.getColumnIndex(CarsTableContract.COLUMN_YEAR));
-        holder.makeAndModel.setText(make + " " +model);
+        holder.makeAndModel.setText(make + " " + model);
         holder.year.setText("Rocznik: " + year);
         Glide.with(holder.image.getContext()).load(imageUrl).into(holder.image);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onCarItemClickListener != null) {
+                    cursor.moveToPosition(position);
+                    onCarItemClickListener.onCarItemClick(cursor.getString(0));    //bierzemy pieerwsza kolumne "0"
+                }
+            }
+        });
 
     }
 
