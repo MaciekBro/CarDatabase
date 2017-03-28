@@ -22,7 +22,7 @@ import butterknife.Unbinder;
  */
 
 public class ListingFragment extends Fragment {
-
+    public static final String TAG = ListingActivity.class.getSimpleName();
     private static final String QUERY_KEY = "query_key";
 
     private Unbinder unbinder; //do ButterKnife, akrtywnośc sama go unbinduje, fragment nie.

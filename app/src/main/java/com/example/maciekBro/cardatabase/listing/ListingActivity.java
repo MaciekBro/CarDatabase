@@ -2,6 +2,8 @@ package com.example.maciekBro.cardatabase.listing;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.graphics.drawable.GradientDrawable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +17,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ListingActivity extends AppCompatActivity implements OnCarItemClickListener {
+
+
     private static final String QUERY = "query";
 
 
@@ -44,11 +48,20 @@ public class ListingActivity extends AppCompatActivity implements OnCarItemClick
     public void onCarItemClick(String id) {
 
         Fragment fragment = DetailsFragment.getInstance(id);
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.fragment_container, fragment)
-                .commit();
-        Toast.makeText(this, "CarId: " + id, Toast.LENGTH_SHORT).show();
 
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.detail_container, fragment)
+//                    .addToBackStack("detail")
+                    .commit();
+
+        } else {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .addToBackStack(ListingFragment.TAG)
+                    .commit();
+        }
     }
 }
