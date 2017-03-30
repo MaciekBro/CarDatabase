@@ -23,7 +23,7 @@ public class MotoContentProvider extends ContentProvider {
 
     static {
 
-        uriMatcher.addURI(AUTHORITY, CarsTableContract.TABLE_NAME, MULTIPLE_ITEM);
+        uriMatcher.addURI(AUTHORITY, CarsTableContract.TABLE_NAME, MULTIPLE_ITEM);      //content provider reaguje na te uri
         uriMatcher.addURI(AUTHORITY, CarsTableContract.TABLE_NAME + "/#", SINGLE_ITEM);
 
     }

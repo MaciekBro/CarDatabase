@@ -1,13 +1,16 @@
 package com.example.maciekBro.cardatabase;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.FilterQueryProvider;
+import android.widget.Toast;
 
 import com.example.maciekBro.cardatabase.add.AddNewCarActivity;
 import com.example.maciekBro.cardatabase.listing.ListingActivity;
@@ -58,5 +61,20 @@ public class MainActivity extends AppCompatActivity {
     void onSearchButtonClick() {
         startActivity(ListingActivity.createIntent(MainActivity.this,
                 autoCompleteTextView.getText().toString()));
+    }
+
+    @OnClick(R.id.run_content_provider)
+    void onRunContentProviderClick(){
+        Cursor cursor = getContentResolver().query(Uri.parse("content://com.example.maciekBro.cardatabase/CARS/1"),null,null,null,null);   //zwraca liste wszystkich elementow bazy
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(CarsTableContract.COLUMN_MAKE, "Opel");
+        contentValues.put(CarsTableContract.COLUMN_MODEL, "Corsa");
+        contentValues.put(CarsTableContract.COLUMN_IMAGE, "");
+        contentValues.put(CarsTableContract.COLUMN_YEAR, 2002);
+
+        getContentResolver().insert(Uri.parse("content://com.example.maciekBro.cardatabase/CARS/"),contentValues);
+        Toast.makeText(this, "" + cursor.getCount() , Toast.LENGTH_SHORT).show();
+
     }
 }
