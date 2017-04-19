@@ -1,5 +1,7 @@
 package com.example.maciekBro.cardatabase.add;
 
+import android.content.ContentValues;
+import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.maciekBro.cardatabase.Car;
 import com.example.maciekBro.cardatabase.CarBuilder;
+import com.example.maciekBro.cardatabase.CarsTableContract;
 import com.example.maciekBro.cardatabase.MotoDatabaseOpenHelper;
 import com.example.maciekBro.cardatabase.R;
 
@@ -21,7 +24,7 @@ import butterknife.OnClick;
 
 public class AddNewCarActivity extends AppCompatActivity {
 
-    private MotoDatabaseOpenHelper databaseOpenHelper;
+//    private MotoDatabaseOpenHelper databaseOpenHelper;
 
     @BindView(R.id.image)
     ImageView imageView;
@@ -42,7 +45,7 @@ public class AddNewCarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_car);
         ButterKnife.bind(this);
-        databaseOpenHelper = new MotoDatabaseOpenHelper(this);
+//        databaseOpenHelper = new MotoDatabaseOpenHelper(this);
     }
 
     @OnClick(R.id.add_car)
@@ -53,9 +56,18 @@ public class AddNewCarActivity extends AppCompatActivity {
                 .setYear(Integer.parseInt(year.getText().toString()))
                 .setImage(imageUrl)
                 .createCar();
-        boolean added = databaseOpenHelper.insertCar(car);
+//        boolean added = databaseOpenHelper.insertCar(car);
 
-        if (added) {
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(CarsTableContract.COLUMN_MAKE, car.getMake());
+        contentValues.put(CarsTableContract.COLUMN_MODEL, car.getModel());
+        contentValues.put(CarsTableContract.COLUMN_IMAGE, car.getImage());
+        contentValues.put(CarsTableContract.COLUMN_YEAR, car.getYear());
+
+        Uri uri = getContentResolver().insert(CarsTableContract.DATA_CONTENT_URI, contentValues);
+
+        if (uri!=null) {
             Toast.makeText(this, "Dodano nowy samochód", Toast.LENGTH_LONG).show();
             make.setText(null);
             model.setText(null);
